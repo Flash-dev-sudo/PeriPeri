@@ -81,7 +81,15 @@ This is a modern restaurant website for Emparo Peri Peri, a London-based peri pe
 
 ## Changelog
 
-- June 26, 2025. Initial setup
+- June 26, 2025: Initial setup and architecture planning
+- June 26, 2025: Full website implementation completed
+  - Connected to Turso database successfully
+  - Built comprehensive homepage with hero section and business information
+  - Created menu page featuring 70+ food photographs with category filtering
+  - Developed contact page with business details and contact form
+  - Implemented responsive design with authentic peri peri branding
+  - Deployed backend API on port 3000 and frontend on port 5173
+  - All business information integrated (address, hours, phone)
 
 ## User Preferences
 
