@@ -1,6 +1,5 @@
 import { sqliteTable, text, integer, real } from "drizzle-orm/sqlite-core";
 import { createInsertSchema } from "drizzle-zod";
-import { z } from "zod";
 
 // Menu Items Table
 export const menuItems = sqliteTable("menu_items", {
@@ -39,13 +38,7 @@ export const orders = sqliteTable("orders", {
 });
 
 // Insert schemas for forms
-export const insertMenuItem = createInsertSchema(menuItems).omit({
-  id: true,
-});
-
-export const insertOrder = createInsertSchema(orders).omit({
-  id: true,
-  createdAt: true,
-});
+export const insertMenuItem = createInsertSchema(menuItems);
+export const insertOrder = createInsertSchema(orders);
 
 // Schema exports for runtime usage
