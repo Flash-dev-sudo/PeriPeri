@@ -20,5 +20,7 @@ app.use('/images', express.static('attached_assets'));
 await registerRoutes(app);
 
 const server = app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`✅ Emparo Peri Peri server running on port ${PORT}`);
+  console.log(`🌐 API: http://localhost:${PORT}/api`);
+  console.log(`📊 Database: ${process.env.DATABASE_URL ? 'Connected to Turso' : 'No database configured'}`);
 });
