@@ -1,103 +1,92 @@
-import { useQuery } from '@tanstack/react-query'
-import { Link } from 'wouter'
-import { Star, Clock, MapPin, Phone } from 'lucide-react'
+import { Link } from 'wouter';
+import { useQuery } from '@tanstack/react-query';
+import { Star, Clock, MapPin, Phone } from 'lucide-react';
 
-// Import food images
-import heroChicken from '@assets/ChatGPT Image May 22, 2025, 08_27_31 PM_1750972099296.png'
-import chickenBurger from '@assets/ChatGPT Image May 19, 2025, 09_40_38 PM_1750972099295.png'
-import grilledChicken from '@assets/ChatGPT Image May 22, 2025, 08_20_28 PM_1750972099295.png'
-import chickenWings from '@assets/ChatGPT Image May 22, 2025, 09_20_56 PM_1750972099296.png'
-import chickenWrap from '@assets/ChatGPT Image May 22, 2025, 09_38_22 PM_1750972099296.png'
-import friedChicken from '@assets/ChatGPT Image May 22, 2025, 10_21_07 PM_1750972099297.png'
-import chickenPlatter from '@assets/ChatGPT Image May 22, 2025, 10_28_35 PM_1750972115720.png'
-
-export default function HomePage() {
-  const { data: featuredItems = [], isLoading } = useQuery({
+function HomePage() {
+  const { data: featuredItems, isLoading } = useQuery({
     queryKey: ['/api/menu/featured'],
-  })
-
-  const featuredImages = [
-    { src: chickenBurger, alt: 'Peri Peri Chicken Burger', title: 'Signature Burgers' },
-    { src: grilledChicken, alt: 'Grilled Peri Peri Chicken', title: 'Grilled Chicken' },
-    { src: chickenWings, alt: 'Glazed Chicken Wings', title: 'Chicken Wings' },
-    { src: chickenWrap, alt: 'Chicken Wrap', title: 'Fresh Wraps' },
-    { src: friedChicken, alt: 'Fried Chicken Strips', title: 'Chicken Strips' },
-    { src: chickenPlatter, alt: 'Chicken Platter with Rice', title: 'Platters' }
-  ]
+  });
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
-          <img 
-            src={heroChicken} 
-            alt="Fresh Grilled Peri Peri Chicken"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-        </div>
-        
-        <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
+      <section className="relative bg-gradient-to-r from-red-600 to-orange-500 text-white">
+        <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+        <div className="relative container mx-auto px-4 py-20 text-center">
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            Authentic <span className="text-primary">Peri Peri</span> Chicken
+            Authentic Peri Peri
           </h1>
-          <p className="text-xl md:text-2xl mb-8 text-gray-200">
-            Experience the bold flavors of Portugal in the heart of London
+          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+            Experience the fiery flavors of Portugal in the heart of Finsbury Park. 
+            Fresh grilled chicken, authentic peri peri spices, and traditional recipes.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/menu">
-              <button className="bg-primary hover:bg-accent text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors">
-                View Our Menu
+              <button className="bg-white text-red-600 px-8 py-3 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors">
+                View Menu
               </button>
             </Link>
-            <a href="tel:02034416940">
-              <button className="border-2 border-white text-white hover:bg-white hover:text-foreground px-8 py-4 rounded-lg text-lg font-semibold transition-colors">
-                Order Now: 020 3441 6940
+            <Link href="/contact">
+              <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold text-lg hover:bg-white hover:text-red-600 transition-colors">
+                Order Now
               </button>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Featured Items Gallery */}
-      <section className="py-16 bg-muted/50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-foreground mb-4">Our Signature Dishes</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              From flame-grilled chicken to crispy strips, every dish is prepared with authentic peri peri spices
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredImages.map((item, index) => (
-              <div key={index} className="food-card bg-white rounded-lg overflow-hidden shadow-lg">
-                <div className="aspect-w-16 aspect-h-12 overflow-hidden">
-                  <img 
-                    src={item.src} 
-                    alt={item.alt}
-                    className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-foreground mb-2">{item.title}</h3>
-                  <p className="text-muted-foreground mb-4">Fresh, flavorful, and cooked to perfection</p>
-                  <div className="flex items-center text-primary">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-current" />
-                    ))}
-                    <span className="ml-2 text-sm text-muted-foreground">(4.9/5)</span>
+      {/* Featured Items Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">
+            Our Signature Dishes
+          </h2>
+          
+          {isLoading ? (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="bg-white rounded-lg shadow-lg overflow-hidden animate-pulse">
+                  <div className="h-48 bg-gray-300"></div>
+                  <div className="p-6">
+                    <div className="h-6 bg-gray-300 rounded mb-2"></div>
+                    <div className="h-4 bg-gray-300 rounded mb-4"></div>
+                    <div className="h-8 bg-gray-300 rounded"></div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {featuredItems?.slice(0, 3).map((item) => (
+                <div key={item.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                  {item.imageUrl && (
+                    <img 
+                      src={item.imageUrl} 
+                      alt={item.name}
+                      className="w-full h-48 object-cover"
+                    />
+                  )}
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold mb-2 text-gray-800">{item.name}</h3>
+                    <p className="text-gray-600 mb-4">{item.description}</p>
+                    <div className="flex justify-between items-center">
+                      <span className="text-2xl font-bold text-red-600">£{item.price}</span>
+                      <div className="flex items-center">
+                        {[...Array(item.spiceLevel)].map((_, i) => (
+                          <Star key={i} className="w-4 h-4 text-red-500 fill-current" />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+          
           <div className="text-center mt-12">
             <Link href="/menu">
-              <button className="bg-primary hover:bg-accent text-white px-8 py-3 rounded-lg font-semibold transition-colors">
-                See Full Menu
+              <button className="bg-red-600 text-white px-8 py-3 rounded-lg font-semibold text-lg hover:bg-red-700 transition-colors">
+                View Full Menu
               </button>
             </Link>
           </div>
@@ -106,80 +95,98 @@ export default function HomePage() {
 
       {/* About Section */}
       <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl font-bold text-foreground mb-6">
-                Why Choose Emparo Peri Peri?
+              <h2 className="text-4xl font-bold mb-6 text-gray-800">
+                About Emparo Peri Peri
               </h2>
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                    <span className="text-white font-bold">🔥</span>
-                  </div>
+              <p className="text-lg text-gray-600 mb-6">
+                Located in the vibrant heart of Finsbury Park, Emparo Peri Peri brings you the authentic taste of Portuguese peri peri cuisine. Our recipes have been passed down through generations, ensuring every bite delivers the perfect balance of flavor and heat.
+              </p>
+              <p className="text-lg text-gray-600 mb-8">
+                We use only the finest ingredients, from succulent flame-grilled chicken to our signature peri peri sauce made from African bird's eye chilies. Whether you prefer mild or extra hot, we have the perfect spice level for you.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="flex items-center space-x-3">
+                  <Clock className="w-6 h-6 text-red-600" />
                   <div>
-                    <h3 className="text-xl font-semibold mb-2">Authentic Portuguese Recipe</h3>
-                    <p className="text-muted-foreground">Traditional peri peri marinade passed down through generations</p>
+                    <p className="font-semibold text-gray-800">Opening Hours</p>
+                    <p className="text-gray-600">Thu-Tue: 1 PM–4 AM</p>
+                    <p className="text-gray-600">Closed Wednesday</p>
                   </div>
                 </div>
-                <div className="flex items-start">
-                  <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                    <span className="text-white font-bold">🌶️</span>
-                  </div>
+                <div className="flex items-center space-x-3">
+                  <Phone className="w-6 h-6 text-red-600" />
                   <div>
-                    <h3 className="text-xl font-semibold mb-2">Perfect Spice Levels</h3>
-                    <p className="text-muted-foreground">From mild to extra hot - we cater to every taste preference</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                    <span className="text-white font-bold">🥘</span>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">Fresh Daily Preparation</h3>
-                    <p className="text-muted-foreground">All chicken marinated for 24 hours and grilled fresh to order</p>
+                    <p className="font-semibold text-gray-800">Call Us</p>
+                    <p className="text-gray-600">020 3441 6940</p>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <img 
-                src={grilledChicken} 
-                alt="Grilled chicken preparation"
-                className="rounded-lg shadow-lg"
-              />
-              <img 
-                src={chickenWings} 
-                alt="Glazed chicken wings"
-                className="rounded-lg shadow-lg"
-              />
+            <div className="relative">
+              <div className="bg-red-600 rounded-lg p-8 text-white">
+                <h3 className="text-2xl font-bold mb-4">Why Choose Emparo?</h3>
+                <ul className="space-y-3">
+                  <li className="flex items-center space-x-2">
+                    <Star className="w-5 h-5 text-yellow-400 fill-current" />
+                    <span>Authentic Portuguese recipes</span>
+                  </li>
+                  <li className="flex items-center space-x-2">
+                    <Star className="w-5 h-5 text-yellow-400 fill-current" />
+                    <span>Flame-grilled to perfection</span>
+                  </li>
+                  <li className="flex items-center space-x-2">
+                    <Star className="w-5 h-5 text-yellow-400 fill-current" />
+                    <span>Fresh ingredients daily</span>
+                  </li>
+                  <li className="flex items-center space-x-2">
+                    <Star className="w-5 h-5 text-yellow-400 fill-current" />
+                    <span>5 spice levels available</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Location & Hours */}
-      <section className="py-16 hero-gradient text-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div>
-              <MapPin className="h-12 w-12 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Visit Us</h3>
-              <p>24 Blackstock Rd<br />Finsbury Park, London N4 2DW</p>
+      {/* Location Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">
+            Visit Us Today
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div className="bg-white rounded-lg shadow-lg p-8">
+              <div className="flex items-center space-x-3 mb-6">
+                <MapPin className="w-6 h-6 text-red-600" />
+                <div>
+                  <h3 className="text-xl font-bold text-gray-800">Our Location</h3>
+                  <p className="text-gray-600">24 Blackstock Rd, Finsbury Park, London N4 2DW</p>
+                </div>
+              </div>
+              <p className="text-gray-600 mb-6">
+                Conveniently located near Finsbury Park station, we're easily accessible by public transport. 
+                Street parking is available, and we're surrounded by vibrant local shops and amenities.
+              </p>
+              <Link href="/contact">
+                <button className="bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors">
+                  Get Directions
+                </button>
+              </Link>
             </div>
-            <div>
-              <Phone className="h-12 w-12 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Call Us</h3>
-              <p>020 3441 6940<br />For orders & reservations</p>
-            </div>
-            <div>
-              <Clock className="h-12 w-12 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Opening Hours</h3>
-              <p>Thu-Tue: 1PM-4AM<br />Closed Wednesday</p>
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+              <div className="h-full bg-gray-200 flex items-center justify-center">
+                <p className="text-gray-500">Map integration available</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
     </div>
-  )
+  );
 }
+
+export default HomePage;
