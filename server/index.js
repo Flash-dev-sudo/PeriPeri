@@ -35,7 +35,8 @@ app.get('/health', (req, res) => {
 
 // Serve React app for any non-API routes in production
 if (process.env.NODE_ENV === 'production') {
-  app.get('*', (req, res) => {
+  app.use('/', express.static(path.join(__dirname, '../client/dist')));
+  app.get(/^(?!\/api).*/, (req, res) => {
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
     res.sendFile(path.join(__dirname, '../client/dist/index.html'));
