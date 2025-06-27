@@ -2,8 +2,12 @@ services:
   - type: web
     name: emparo-peri-peri
     env: node
-    buildCommand: npm run render-build
-    startCommand: npm start
+    buildCommand: npm install && cd client && npm install && npm run build
+    startCommand: NODE_ENV=production node server/index.js
     envVars:
       - key: NODE_ENV
         value: production
+      - key: TURSO_DATABASE_URL
+        sync: false
+      - key: TURSO_AUTH_TOKEN
+        sync: false
