@@ -1,6 +1,6 @@
 import { Switch, Route } from 'wouter';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Toaster } from '@/components/ui/toaster';
+import { Toaster } from './components/ui/toaster';
 import HomePage from '@/pages/HomePage';
 import MenuPage from '@/pages/MenuPage';
 import ContactPage from '@/pages/ContactPage';
